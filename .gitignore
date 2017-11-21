@@ -1,0 +1,3 @@
+#rimuovi file .csv e .txt
+*.csv
+*.txt
