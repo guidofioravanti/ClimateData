@@ -375,7 +375,7 @@ checkSeriesValidity2<-function(x,percentualeAnniPresenti,max.size.block.na,minLe
   #risControllo: vettore di FALSE (serie non valida) o TRUE (serie valida) con cui filtriamo
   #l'oggetto xts
 
-  as.data.frame(coredata(x),optional=TRUE) %>% purrr::dmap(controllo)->risControllo
+  as.data.frame(coredata(x),optional=TRUE) %>% purrrlyr::dmap(controllo)->risControllo
 
   risControllo %>% purrr::map_lgl(.f=function(x){any(!is.na(x))})->vvv
   if(all(vvv==FALSE)) return(NULL)
