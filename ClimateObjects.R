@@ -75,7 +75,7 @@ ClimateData.data.frame<-function(x,param=NULL)
   
   #switch(tipoDati,"daily"=4,"monthly"=3,"yearly"=2)->colonna
   lStr[[tipoDati]]->stringa
-  x[,!names(x) %in% stringa]->soloDati
+  x[,!names(x) %in% stringa,drop=FALSE]->soloDati
   
   #caso assurdo che passo solo le colonne dei tempi
   if(!ncol(soloDati)) return(NULL)
