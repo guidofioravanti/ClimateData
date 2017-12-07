@@ -115,7 +115,20 @@ ClimateData.xts<-function(x,param=NULL)
     param<-"tasmin"
   }  
   
-  periodicity(x)$scale->periodicita
+
+  tryCatch({
+    periodicity(x)$scale
+  },error=function(e){
+    
+    #nel caso dei climatologici annuali, periodicity fallisce
+    if(nrow(x)==1){
+      "yearly" 
+    }else{
+      ""
+    }
+    
+  })->periodicita
+      
   if(!periodicita %in% c("daily","monthly","yearly")) stop("Periodicità non riconosciuta")
   
   class(x)<-c("ClimateData",periodicita,class(x))
