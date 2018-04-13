@@ -176,14 +176,22 @@ aggregaCD.yearly<-function(x,ignore.par,max.na,rle.check,max.size.block.na,seaso
 {
 
   if(missing(ignore.par) || missing(max.na) || missing(rle.check) || missing(max.size.block.na) || missing(seasonal)) stop("Parametri mancanti")  
-  
+
   xtsAttributes(x)$parametro->parametro
 
   #se ignore.par==TRUE, dobbiamo fare la media. Questo serve per calcolare il
   #climatologico mensile della precipitazione
   #In ogni altro caso saraà il parametro a determinare la funzione di aggregazione
-  ifelse(ignore.par,mean,ifelse(parametro=="pr",sum,mean))->funzione    
-  
+  if(ignore.par){
+    mean->funzione
+  }else{  
+    if(parametro=="pr"){
+      sum->funzione
+    }else{  
+      mean->funzione
+    }  
+  }  
+
   #in base al tipo di dati di x determino il nuovo tipo di dati che verrà prodotto da
   #aggregaCD. Se si tratta di dati daily otterrò dati monthly. Nel caso di dati monthly
   #otterrò dati yearly. In base al tipo di dati di output determino anche la funzione
