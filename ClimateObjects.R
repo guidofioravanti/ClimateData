@@ -35,7 +35,7 @@ ClimateData.data.frame<-function(x,param=NULL)
   #se dd è presente deve essere presente anche mm
   if("dd" %in% names(x) || "day" %in% names(x) ) stopifnot("mm" %in% names(x) || "month" %in% names(x))
 
-  if(!is.character(param) || !(param %in% c("pr","tas","tasmax","tasmin","prpc","tmax","tmin") )) 
+  if(!is.character(param) || !(param %in% c("pr","tas","tasmax","tasmin","prpc","tmax","tmin","tmean") )) 
     stop("Parametro param mancante o non corretto")
 
   #ricodifichiamo year, month e day se presenti come nomi colonne
